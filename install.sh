@@ -90,6 +90,7 @@ nserver 2001:4860:4860::8888
 nserver 2001:4860:4860::8844
 nscache 65536
 timeouts 1 5 30 60 180 1800 15 60
+log none  # Disable logging
 users $(awk -F "/" 'BEGIN{ORS="";} {print $1 ":CL:" $2 " "}' ${WORKDATA})
 
 # HTTP proxy part
@@ -103,7 +104,6 @@ $(awk -F "/" '{print "auth strong\n" \
 "allow " $1 "\n" \
 "socks -64 -n -a1 -p" $4+20000 " -i" $3 " -e" $5 "\n" \
 "flush\n"}' ${WORKDATA})
-
 EOF
 }
 
